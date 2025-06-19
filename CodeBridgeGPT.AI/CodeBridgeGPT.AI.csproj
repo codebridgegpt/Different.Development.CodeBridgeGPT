@@ -21,4 +21,8 @@
     <None Include="wwwroot\swaggerstyle.css" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CodeBridgeGPT.DbContext.DataLayer\CodeBridgeGPT.DbContext.DataLayer.csproj" />
+  </ItemGroup>
+
 </Project>

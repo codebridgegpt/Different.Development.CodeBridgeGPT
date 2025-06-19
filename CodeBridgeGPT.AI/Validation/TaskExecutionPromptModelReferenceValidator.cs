@@ -1,16 +1,11 @@
 ﻿using CodeBridgeGPT.AI.Interfaces;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text.RegularExpressions;
 
 namespace CodeBridgeGPT.AI.Validation
 {
-    public class TaskExecutionPromptModelReferenceValidator : IPromptValidator
+    public class TaskExecutionPromptModelReferenceValidator(IModelInspectorService inspectorService) : IPromptValidator
     {
-        private readonly IModelInspectorService _inspectorService;
-        public TaskExecutionPromptModelReferenceValidator(IModelInspectorService inspectorService)
-        {
-            _inspectorService = inspectorService;
-        }
+        private readonly IModelInspectorService _inspectorService = inspectorService;
 
         public List<string> ValidateStringPrompt(string prompt)
         {

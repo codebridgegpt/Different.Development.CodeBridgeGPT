@@ -1,11 +1,15 @@
 ﻿using CodeBridgeGPT.AI.Interfaces;
 using CodeBridgeGPT.AI.Services;
 using CodeBridgeGPT.AI.Validation;
+using CodeBridgeGPT.DbContext.DataLayer.DBContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeBridgeGPT.AI
 {
-    public class Startup
+    public class Startup(IConfiguration configuration)
     {
+        private readonly IConfiguration _configuration = configuration;
+
         public void ConfigureServices(IServiceCollection services)
         {
             // Add services to the container.
@@ -13,6 +17,10 @@ namespace CodeBridgeGPT.AI
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddHttpClient();
+            services.AddDbContext<DataLayerContext>(options => 
+            {
+                options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddSingleton<IKernelService, CodeBridgeGPTService>();
             services.AddSingleton<IGitHubProcessor, GitHubProcessorService>();
             services.AddSingleton<IGitCommitProcessor, GitCommitProcessor>();
