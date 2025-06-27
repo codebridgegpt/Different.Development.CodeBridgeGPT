@@ -16,7 +16,7 @@ namespace ContactApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostContact([FromBody]Contact contact)
+        public IActionResult PostContact([FromBody] Contact contact)
         {
             _context.Contacts.Add(contact);
             _context.SaveChanges();
