@@ -1,29 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ContactApi.Data;
 using Microsoft.EntityFrameworkCore;
+using ContactApi.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connection));
 
-builder.Services.AddControllers();
+var connectionString = "YOUR_CONNECTION_STRING_HERE";
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Contact API"));
-}
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.Run();
