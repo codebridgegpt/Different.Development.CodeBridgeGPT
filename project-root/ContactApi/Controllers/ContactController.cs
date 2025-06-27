@@ -4,18 +4,19 @@ using ContactApi.Models;
 
 namespace ContactApi.Controllers
 {
-    [Route("api/contact")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ContactController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+
         public ContactController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [HttpPost]
-        public IActionResult SaveContact([FromBody] Contact contact)
+        public IActionResult PostContact([FromBody] Contact contact)
         {
             _context.Contacts.Add(contact);
             _context.SaveChanges();
