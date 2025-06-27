@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using ContactApi.Data;
 using ContactApi.Models;
+using System.Threading.Tasks;
 
 namespace ContactApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ContactController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -16,10 +17,16 @@ namespace ContactApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostContact([FromBody] Contact contact)
+        public async Task<IActionResult> SaveContact([FromBody] Contact contact)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _context.Contacts.Add(contact);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            
             return Ok();
         }
     }
