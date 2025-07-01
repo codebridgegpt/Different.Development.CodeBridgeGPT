@@ -9,7 +9,7 @@ namespace CodeBridgeGPT.AI.Models
         public string TaskId { get; set; } = default!;
         
         [Required(ErrorMessage = "Prompt is required.")]
-        [RegularExpression(@"^You are an AI-powered Developer Assistant. Based on the following User Story - Generate all necessary files required to scaffold and implement a complete logic-\A")]
+        //[RegularExpression(@"^You are an AI-powered Developer Assistant. Based on the following User Story - Generate all necessary files required to scaffold and implement a complete logic-\A")]
         public string TaskExecutionPrompt { get; set; } = default!;
 
         [Required]

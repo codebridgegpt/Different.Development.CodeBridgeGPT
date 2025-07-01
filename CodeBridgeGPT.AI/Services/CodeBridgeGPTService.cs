@@ -63,7 +63,7 @@ namespace CodeBridgeGPT.AI.Services
                 };
 
                 // For example, you could call a service that handles GitHub commits
-                var req = MapGptResponseToGitHubRequest(response, "codebridge-gpt", request.RepositoryName, "master", gitHubCommitter);
+                var req = MapGptResponseToGitHubRequest(response, "codebridgegpt", request.RepositoryName, "master", gitHubCommitter);
                 await _gitCommitProcessor.CreateOrUpdateFileAsync(req, "");
 
             }

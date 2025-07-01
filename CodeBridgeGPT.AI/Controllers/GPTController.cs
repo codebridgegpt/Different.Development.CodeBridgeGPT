@@ -1,6 +1,10 @@
 ﻿using CodeBridgeGPT.AI.Interfaces;
 using CodeBridgeGPT.AI.Models;
+using CodeBridgeGPT.DbContext.DataLayer.DBContext;
+using CodeBridgeGPT.DbContext.DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
+using CodeBridgeGptResponseModel = CodeBridgeGPT.DbContext.DataLayer.Models.CodeBridgeGptResponseModel;
+using FilesModel = CodeBridgeGPT.DbContext.DataLayer.Models.FilesModel;
 
 namespace CodeBridgeGPT.AI.Controllers
 {
@@ -13,14 +17,16 @@ namespace CodeBridgeGPT.AI.Controllers
         private readonly IGitHubProcessor _gitHubService;
         private readonly ICreateRepository _gitHubRepositoryService;
         private readonly IGitCommitProcessor _gitCommitProcessor;
+        private readonly DataLayerContext _context;
 
-        public GPTController(IKernelService kernelService, IConfiguration configuration, IGitHubProcessor gitHubService, ICreateRepository repository, IGitCommitProcessor gitCommitProcessor)
+        public GPTController(IKernelService kernelService, IConfiguration configuration, IGitHubProcessor gitHubService, ICreateRepository repository, IGitCommitProcessor gitCommitProcessor, DataLayerContext context)
         {
             _kernelService = kernelService;
             _configuration = configuration;
             _gitHubService = gitHubService;
             _gitHubRepositoryService = repository;
             _gitCommitProcessor = gitCommitProcessor;
+            _context = context;
         }
 
         [HttpPost("codebridgegpt")]
@@ -35,6 +41,24 @@ namespace CodeBridgeGPT.AI.Controllers
                     return BadRequest(new { Message = "Invalid request", Errors = errors });
                 }
                 var result = await _kernelService.GenerateCodeFromPromptAsync(request);
+                if (result == null || result.Files == null || result.Files.Count == 0)
+                {
+                    return NotFound("No files generated for the given request.");
+                }
+                var response = new CodeBridgeGptResponseModel
+                {
+                    TaskResponseId = result.TaskResponseId,
+                    Timestamp = result.Timestamp,
+                    Files = [.. result.Files.Select(f => new FilesModel()
+                    {
+                        FilePath = f.FilePath,
+                        Content = f.Content,
+                        Action = f.Action,
+                        Message = "successfully code committed"
+                    })]
+                };
+                _context.CodeBridgeGptDbResponse.Add(response);
+                await _context.SaveChangesAsync();
                 return Ok(result);
             }
             catch (Exception ex)
