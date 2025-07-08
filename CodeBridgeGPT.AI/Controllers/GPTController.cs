@@ -29,7 +29,7 @@ namespace CodeBridgeGPT.AI.Controllers
             _context = context;
         }
 
-        [HttpPost("codebridgegpt")]
+        [HttpPost("taskexecute")]
         public async Task<IActionResult> GenerateCode([FromBody] CodeBridgeGptRequestModel request)
         {
             try

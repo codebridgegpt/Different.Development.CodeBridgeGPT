@@ -17,6 +17,10 @@ namespace CodeBridgeGPT.AI
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddHttpClient();
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+            });
             services.AddDbContext<DataLayerContext>(options => 
             {
                 options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
