@@ -1,15 +1,15 @@
 ﻿/* ✅ Global background override */
 body, .swagger-ui, .swagger-ui .wrapper {
-    background-color: #c9ffc9 !important; /* Mustard green */
+    background-color: #ffffff !important; /* Mustard green */
 }
 
     /* ✅ Top bar styling */
     .swagger-ui .topbar {
-        background-color: #0b323a !important;
+        background-color:#b3d8f0 !important;
     }
 
         .swagger-ui .topbar .topbar-wrapper span {
-            color: #ecf0f1;
+            color: #fcfcfc;
         }
 
     /* ✅ Scheme selector dropdown */
@@ -34,8 +34,8 @@ body, .swagger-ui, .swagger-ui .wrapper {
         border: 1px solid #b3d8f0;
         border-radius: 10px;
         padding: 10px;
-        margin-top: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        box-shadow: 0 2px 6px #0000001a;
         display: flex;
         flex-direction: row;
         align-items: flex-start;
@@ -66,3 +66,14 @@ body, .swagger-ui, .swagger-ui .wrapper {
         color: red;
         font-weight: bold;
     }
+    .swagger-ui .model-toggle {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 10px;
+    margin: auto .3em;
+    position: relative;
+    top: 0;
+    transform: rotate(90deg);
+    transform-origin: 50% 50%;
+    transition: transform .15s ease-in;
+}

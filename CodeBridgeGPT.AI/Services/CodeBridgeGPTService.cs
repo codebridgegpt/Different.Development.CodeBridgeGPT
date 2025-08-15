@@ -3,6 +3,7 @@ using CodeBridgeGPT.AI.Models;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace CodeBridgeGPT.AI.Services
@@ -131,6 +132,7 @@ namespace CodeBridgeGPT.AI.Services
         {
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.UserAgent.ParseAdd("CodeBridgeGPT");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             string baseBranch = "master"; // Or "main" based on your repo
             var baseBranchResponse = await client.GetAsync($"https://api.github.com/repos/{owner}/{repo}/branches/{baseBranch}");
@@ -154,6 +156,8 @@ namespace CodeBridgeGPT.AI.Services
             };
 
             var content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            client.DefaultRequestHeaders.UserAgent.ParseAdd("CodeBridgeGPT");
             var createBranchResponse = await client.PostAsync($"https://api.github.com/repos/{owner}/{repo}/git/refs", content);
 
             if (!createBranchResponse.IsSuccessStatusCode)
