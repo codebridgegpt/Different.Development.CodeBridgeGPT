@@ -14,7 +14,6 @@ namespace CodeBridgeGPT.DbContext.DataLayer.DBContext
             {
                 entity.HasKey(e => e.TaskResponseId);
             });
-            // Additional model configurations can be added here
         }
     }
 }
