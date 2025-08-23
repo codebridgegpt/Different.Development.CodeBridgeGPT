@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBridgeGPT.AI", "CodeBri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBridgeGPT.DbContext.DataLayer", "CodeBridgeGPT.DbContext.DataLayer\CodeBridgeGPT.DbContext.DataLayer.csproj", "{7FBBFF4C-E75B-4316-8BEF-607DDDBA3FD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBridgeGPT.Response.Models", "CodeBridgeGPT.Response.Model\CodeBridgeGPT.Response.Models.csproj", "{AEB4700F-F42A-460D-AEE5-E68223F3D684}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7FBBFF4C-E75B-4316-8BEF-607DDDBA3FD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FBBFF4C-E75B-4316-8BEF-607DDDBA3FD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FBBFF4C-E75B-4316-8BEF-607DDDBA3FD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEB4700F-F42A-460D-AEE5-E68223F3D684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEB4700F-F42A-460D-AEE5-E68223F3D684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEB4700F-F42A-460D-AEE5-E68223F3D684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEB4700F-F42A-460D-AEE5-E68223F3D684}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
