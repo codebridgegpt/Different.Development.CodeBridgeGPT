@@ -2,7 +2,7 @@
 
 namespace CodeBridgePlatform.Response.Models
 {
-    public class HttpResponseMessage<T>
+    public class PlatformResponseMessage<T>
     {
         private readonly List<string> _error = [];
         
@@ -20,16 +20,16 @@ namespace CodeBridgePlatform.Response.Models
         [JsonProperty("timestamp")]
         public DateTime Timestamp { get; set; }
 
-        [JsonProperty("requestId")]
-        public Guid RequestId { get; set; }
+        [JsonProperty("responseId")]
+        public string TaskResponseId { get; set; } = default!;
 
         [JsonProperty("result")]
         public string? Result { get; set; }
 
         public T? Data { get; private set; }
 
-        [JsonProperty("usage")]
-        public GPTTokenUtilities? Usage { get; set; }
+        //[JsonProperty("usage")]
+        //public GPTTokenUtilities? Usage { get; set; }
 
         public void SetError(string error) { _error.Add(error); IsSuccess = false; }
 

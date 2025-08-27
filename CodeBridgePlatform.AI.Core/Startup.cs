@@ -25,7 +25,7 @@ namespace CodeBridgePlatform.AI.Core
             {
                 options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
             });
-            services.AddSingleton<IKernelService, CodeBridgeGPTService>();
+            services.AddSingleton<ICodeBridgePlatformService, CodeBridgePlatformService>();
             services.AddSingleton<IGitHubProcessor, GitHubProcessorService>();
             services.AddSingleton<IGitCommitProcessor, GitCommitProcessor>();
             services.AddSingleton<ICreateRepository, CreateRepositoryService>();

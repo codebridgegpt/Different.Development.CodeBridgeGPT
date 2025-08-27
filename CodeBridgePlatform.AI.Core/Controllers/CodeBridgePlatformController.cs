@@ -2,23 +2,23 @@
 using CodeBridgePlatform.AI.Core.Models;
 using CodeBridgePlatform.DbContext.DataLayer.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using CodeBridgeGptResponseModel = CodeBridgePlatform.DbContext.DataLayer.Models.CodeBridgeGptResponseModel;
+using CodeBridgePlatformDataResponseModel = CodeBridgePlatform.DbContext.DataLayer.Models.CodeBridgePlatformDbResponseModel;
 using FilesModel = CodeBridgePlatform.DbContext.DataLayer.Models.FilesModel;
 
 namespace CodeBridgePlatform.AI.Core.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GPTController : ControllerBase
+    public class CodeBridgePlatformController : ControllerBase
     {
-        private readonly IKernelService _kernelService;
+        private readonly ICodeBridgePlatformService _kernelService;
         private readonly IConfiguration _configuration;
         private readonly IGitHubProcessor _gitHubService;
         private readonly ICreateRepository _gitHubRepositoryService;
         private readonly IGitCommitProcessor _gitCommitProcessor;
         private readonly DataLayerContext _context;
 
-        public GPTController(IKernelService kernelService, IConfiguration configuration, IGitHubProcessor gitHubService, ICreateRepository repository, IGitCommitProcessor gitCommitProcessor, DataLayerContext context)
+        public CodeBridgePlatformController(ICodeBridgePlatformService kernelService, IConfiguration configuration, IGitHubProcessor gitHubService, ICreateRepository repository, IGitCommitProcessor gitCommitProcessor, DataLayerContext context)
         {
             _kernelService = kernelService;
             _configuration = configuration;
@@ -29,7 +29,7 @@ namespace CodeBridgePlatform.AI.Core.Controllers
         }
 
         [HttpPost("taskexecute")]
-        public async Task<IActionResult> GenerateCode([FromBody] CodeBridgeGptRequestModel request)
+        public async Task<IActionResult> GenerateCode([FromBody] CodeBridgePlatformRequestModel request)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace CodeBridgePlatform.AI.Core.Controllers
                 {
                     return NotFound("No files generated for the given request.");
                 }
-                var response = new CodeBridgeGptResponseModel
+                var response = new CodeBridgePlatformDataResponseModel
                 {
                     TaskResponseId = result.TaskResponseId,
                     Timestamp = result.Timestamp,

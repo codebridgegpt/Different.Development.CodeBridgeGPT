@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CodeBridgePlatform.DbContext.DataLayer\CodeBridgePlatform.DbContext.DataLayer.csproj" />
+    <ProjectReference Include="..\CodeBridgePlatform.Response.Models\CodeBridgePlatform.Response.Models.csproj" />
   </ItemGroup>
 
 </Project>

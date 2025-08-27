@@ -3,9 +3,9 @@ using Microsoft.SemanticKernel;
 
 namespace CodeBridgePlatform.AI.Core.Interfaces
 {
-    public interface IKernelService
+    public interface ICodeBridgePlatformService
     {
-        Task<CodeBridgeGptResponseModel> GenerateCodeFromPromptAsync(CodeBridgeGptRequestModel request);
+        Task<CodeBridgePlatformResponseModel> GenerateCodeFromPromptAsync(CodeBridgePlatformRequestModel request);
         Kernel GetKernel();
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CodeBridgePlatform.AI.Core.Services
 {
-    public class CodeBridgeGPTService : IKernelService
+    public class CodeBridgePlatformService : ICodeBridgePlatformService
     {
         private readonly string _repository;
         private const string token = "";
@@ -20,7 +20,7 @@ namespace CodeBridgePlatform.AI.Core.Services
         private readonly IGitCommitProcessor _gitCommitProcessor;
         private readonly IPromptValidator _inspectorService;
 
-        public CodeBridgeGPTService(IConfiguration configuration, IHttpClientFactory httpClientFactory, IGitCommitProcessor gitCommitProcessor, IPromptValidator inspectorService)
+        public CodeBridgePlatformService(IConfiguration configuration, IHttpClientFactory httpClientFactory, IGitCommitProcessor gitCommitProcessor, IPromptValidator inspectorService)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
             var apiKey = _configuration["KernelSettings:ApiKey"];
@@ -49,7 +49,7 @@ namespace CodeBridgePlatform.AI.Core.Services
 
         public Kernel GetKernel() => _kernelServices;
 
-        public async Task<CodeBridgeGptResponseModel> GenerateCodeFromPromptAsync(CodeBridgeGptRequestModel request)
+        public async Task<CodeBridgePlatformResponseModel> GenerateCodeFromPromptAsync(CodeBridgePlatformRequestModel request)
         {
             var promptError = _inspectorService.ValidateStringPrompt(request.TaskExecutionPrompt);
             if (promptError.Count > 0) throw new Exception($"TaskExecutionPrompt is invalid in validation test");
@@ -66,7 +66,7 @@ namespace CodeBridgePlatform.AI.Core.Services
             if (result == null || string.IsNullOrWhiteSpace(result.Content))
                 throw new InvalidOperationException("AI bot returned an empty response.");
 
-            var gptresponse = JsonConvert.DeserializeObject<CodeBridgeGptResponseModel>(result.Content) ?? throw new InvalidOperationException("Failed to parse AI response as JSON.");
+            var gptresponse = JsonConvert.DeserializeObject<CodeBridgePlatformResponseModel>(result.Content) ?? throw new InvalidOperationException("Failed to parse AI response as JSON.");
 
             if (string.IsNullOrWhiteSpace(gptresponse.TaskResponseId)) throw new InvalidOperationException("Not a valid response, must contain a TaskResponseId.");
 
@@ -83,7 +83,7 @@ namespace CodeBridgePlatform.AI.Core.Services
             return gptresponse;
         }
 
-        private static string BuildPromptFromRequest(CodeBridgeGptRequestModel request)
+        private static string BuildPromptFromRequest(CodeBridgePlatformRequestModel request)
         {
             var sb = new StringBuilder();
             sb.AppendLine(request.TaskExecutionPrompt);
@@ -95,7 +95,7 @@ namespace CodeBridgePlatform.AI.Core.Services
         }
 
         private async Task<GitHubContentUpdateRequest> MapGptResponseToGitHubRequest(
-        CodeBridgeGptResponseModel gptresponse, string owner, string repo, string branch, GitHubCommitter committer)
+        CodeBridgePlatformResponseModel gptresponse, string owner, string repo, string branch, GitHubCommitter committer)
         {
             if (!await RepositoryExistsAsync(owner, repo))
             {
