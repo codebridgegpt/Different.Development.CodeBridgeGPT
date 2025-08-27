@@ -1,16 +1,16 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace CodeBridgeGPT.Response.Models
 {
     public sealed class GPTTokenUtilities
     {
-        [JsonPropertyName("promptTokens")]
+        [JsonProperty("promptTokens")]
         public int PromptTokens { get; set; }
 
-        [JsonPropertyName("completionTokens")]
+        [JsonProperty("completionTokens")]
         public int CompletionTokens { get; set; }
 
-        [JsonPropertyName("totalTokens")]
+        [JsonProperty("totalTokens")]
         public int TotalTokens { get; set; }
     }
 }
