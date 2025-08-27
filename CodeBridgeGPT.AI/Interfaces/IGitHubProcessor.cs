@@ -1,6 +1,6 @@
-﻿using CodeBridgeGPT.AI.Models;
+﻿using CodeBridgePlatform.AI.Core.Models;
 
-namespace CodeBridgeGPT.AI.Interfaces
+namespace CodeBridgePlatform.AI.Core.Interfaces
 {
     public interface IGitHubProcessor
     {

@@ -1,4 +1,6 @@
-﻿namespace CodeBridgeGPT.Response.Models
+﻿using CodeBridgePlatform.Response.Models;
+
+namespace CodeBridgePlatform.Response.Models
 {
     public class GptTrackedFile
     {

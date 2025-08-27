@@ -1,10 +1,10 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
-using CodeBridgeGPT.AI.Models;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text;
+using CodeBridgePlatform.AI.Core.Interfaces;
+using CodeBridgePlatform.AI.Core.Models;
 
-namespace CodeBridgeGPT.AI.Services
+namespace CodeBridgePlatform.AI.Core.Services
 {
     public class GitCommitProcessor : IGitCommitProcessor
     {

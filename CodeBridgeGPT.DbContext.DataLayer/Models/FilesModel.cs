@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace CodeBridgeGPT.DbContext.DataLayer.Models
+namespace CodeBridgePlatform.DbContext.DataLayer.Models
 {
     public class FilesModel
     {

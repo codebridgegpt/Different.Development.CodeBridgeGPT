@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using System.IO;
 
-namespace CodeBridgeGPT.DbContext.DataLayer.DBContext
+namespace CodeBridgePlatform.DbContext.DataLayer.DBContext
 {
     public class DataLayerContextFactory : IDesignTimeDbContextFactory<DataLayerContext>
     {

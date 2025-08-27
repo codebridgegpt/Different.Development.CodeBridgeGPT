@@ -1,5 +1,5 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
-using CodeBridgeGPT.AI.Models;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
+using CodeBridgePlatform.AI.Core.Models;
 using Microsoft.IdentityModel.Tokens;
 using Octokit;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Text.Json;
 using ProductHeaderValue = Octokit.ProductHeaderValue;
 
-namespace CodeBridgeGPT.AI.Services
+namespace CodeBridgePlatform.AI.Core.Services
 {
     public class GitHubProcessorService : IGitHubProcessor
     {

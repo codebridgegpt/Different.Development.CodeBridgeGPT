@@ -1,12 +1,11 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
-using CodeBridgeGPT.AI.Models;
-using CodeBridgeGPT.DbContext.DataLayer.DBContext;
-using CodeBridgeGPT.DbContext.DataLayer.Models;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
+using CodeBridgePlatform.AI.Core.Models;
+using CodeBridgePlatform.DbContext.DataLayer.DBContext;
 using Microsoft.AspNetCore.Mvc;
-using CodeBridgeGptResponseModel = CodeBridgeGPT.DbContext.DataLayer.Models.CodeBridgeGptResponseModel;
-using FilesModel = CodeBridgeGPT.DbContext.DataLayer.Models.FilesModel;
+using CodeBridgeGptResponseModel = CodeBridgePlatform.DbContext.DataLayer.Models.CodeBridgeGptResponseModel;
+using FilesModel = CodeBridgePlatform.DbContext.DataLayer.Models.FilesModel;
 
-namespace CodeBridgeGPT.AI.Controllers
+namespace CodeBridgePlatform.AI.Core.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -34,7 +33,7 @@ namespace CodeBridgeGPT.AI.Controllers
         {
             try
             {
-                if(!ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     List<string> errors = ModelState.Where(ms => ms.Value?.Errors.Count > 0).SelectMany(ms => ms.Value!.Errors).Select(e => e.ErrorMessage).ToList();
 
@@ -79,7 +78,7 @@ namespace CodeBridgeGPT.AI.Controllers
                     return BadRequest("GitHub owner or repository is not configured.");
                 }
                 long? installationId = await _gitHubService.GenerateInstallationIdAsync(loginuser);
-                
+
                 if (installationId == null)
                     return BadRequest("GitHub App is not installed for the specified owner.");
 

@@ -1,4 +1,4 @@
-﻿namespace CodeBridgeGPT.AI.Models
+﻿namespace CodeBridgePlatform.AI.Core.Models
 {
     public class UpdateDetailsModel
     {

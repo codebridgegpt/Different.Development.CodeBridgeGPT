@@ -1,4 +1,4 @@
-namespace CodeBridgeGPT.AI
+namespace CodeBridgePlatform.AI.Core
 {
     public class Program
     {
@@ -6,10 +6,10 @@ namespace CodeBridgeGPT.AI
         {
             CreateHostBuilder(args).Build().Run();
         }
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
     }
 }

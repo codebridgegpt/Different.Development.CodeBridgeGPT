@@ -1,4 +1,4 @@
-﻿namespace CodeBridgeGPT.AI.Interfaces
+﻿namespace CodeBridgePlatform.AI.Core.Interfaces
 {
     public interface IPromptValidator
     {

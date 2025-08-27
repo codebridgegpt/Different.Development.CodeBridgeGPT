@@ -1,7 +1,7 @@
-﻿using CodeBridgeGPT.AI.Models;
+﻿using CodeBridgePlatform.AI.Core.Models;
 using Microsoft.SemanticKernel;
 
-namespace CodeBridgeGPT.AI.Interfaces
+namespace CodeBridgePlatform.AI.Core.Interfaces
 {
     public interface IKernelService
     {

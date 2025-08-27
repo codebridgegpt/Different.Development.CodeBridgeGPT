@@ -1,7 +1,7 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
 using System.Text.RegularExpressions;
 
-namespace CodeBridgeGPT.AI.Validation
+namespace CodeBridgePlatform.AI.Core.Validation
 {
     public class TaskExecutionPromptModelReferenceValidator(IModelInspectorService inspectorService) : IPromptValidator
     {

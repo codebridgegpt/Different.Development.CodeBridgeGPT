@@ -1,10 +1,10 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
-using CodeBridgeGPT.AI.Services;
-using CodeBridgeGPT.AI.Validation;
-using CodeBridgeGPT.DbContext.DataLayer.DBContext;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
+using CodeBridgePlatform.AI.Core.Services;
+using CodeBridgePlatform.AI.Core.Validation;
+using CodeBridgePlatform.DbContext.DataLayer.DBContext;
 using Microsoft.EntityFrameworkCore;
 
-namespace CodeBridgeGPT.AI
+namespace CodeBridgePlatform.AI.Core
 {
     public class Startup(IConfiguration configuration)
     {
@@ -21,7 +21,7 @@ namespace CodeBridgeGPT.AI
             {
                 options.LowercaseUrls = true;
             });
-            services.AddDbContext<DataLayerContext>(options => 
+            services.AddDbContext<DataLayerContext>(options =>
             {
                 options.UseNpgsql(_configuration.GetConnectionString("DefaultConnection"));
             });

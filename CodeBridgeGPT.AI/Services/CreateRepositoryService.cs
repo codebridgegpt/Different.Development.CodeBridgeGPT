@@ -1,10 +1,10 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
-using CodeBridgeGPT.AI.Models;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
+using CodeBridgePlatform.AI.Core.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace CodeBridgeGPT.AI.Services
+namespace CodeBridgePlatform.AI.Core.Services
 {
     public class CreateRepositoryService(IHttpClientFactory httpClient) : ICreateRepository
     {

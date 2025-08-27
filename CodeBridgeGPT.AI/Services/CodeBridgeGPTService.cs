@@ -1,12 +1,12 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
-using CodeBridgeGPT.AI.Models;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
+using CodeBridgePlatform.AI.Core.Models;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace CodeBridgeGPT.AI.Services
+namespace CodeBridgePlatform.AI.Core.Services
 {
     public class CodeBridgeGPTService : IKernelService
     {
@@ -53,8 +53,8 @@ namespace CodeBridgeGPT.AI.Services
         {
             var promptError = _inspectorService.ValidateStringPrompt(request.TaskExecutionPrompt);
             if (promptError.Count > 0) throw new Exception($"TaskExecutionPrompt is invalid in validation test");
-            
-            if(request.RepositoryName == _repository)
+
+            if (request.RepositoryName == _repository)
             {
                 throw new InvalidOperationException("Invalid target repository. Cannot commit to the source code repository.");
             }
@@ -68,11 +68,11 @@ namespace CodeBridgeGPT.AI.Services
 
             var gptresponse = JsonConvert.DeserializeObject<CodeBridgeGptResponseModel>(result.Content) ?? throw new InvalidOperationException("Failed to parse AI response as JSON.");
 
-            if(string.IsNullOrWhiteSpace(gptresponse.TaskResponseId)) throw new InvalidOperationException("Not a valid response, must contain a TaskResponseId.");
+            if (string.IsNullOrWhiteSpace(gptresponse.TaskResponseId)) throw new InvalidOperationException("Not a valid response, must contain a TaskResponseId.");
 
             GitHubCommitter gitHubCommitter = new()
             {
-                Name  = "Abhitosh Kumar",
+                Name = "Abhitosh Kumar",
                 Email = "kumarabhitosh678@gmail.com"
             };
             string owner = _configuration["GitHub:owner"] ?? throw new InvalidOperationException("TargetRepositoryOwner is not specified in the request or configuration.");
@@ -98,8 +98,8 @@ namespace CodeBridgeGPT.AI.Services
         CodeBridgeGptResponseModel gptresponse, string owner, string repo, string branch, GitHubCommitter committer)
         {
             if (!await RepositoryExistsAsync(owner, repo))
-            { 
-                throw new InvalidOperationException($"GitHub repository '{owner}/{repo}' does not exist."); 
+            {
+                throw new InvalidOperationException($"GitHub repository '{owner}/{repo}' does not exist.");
             }
             var commitPayload = new GitHubContentUpdateRequest
             {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CodeBridgeGPT.Response.Models
+namespace CodeBridgePlatform.Response.Models
 {
     public class HttpResponseMessage<T>
     {

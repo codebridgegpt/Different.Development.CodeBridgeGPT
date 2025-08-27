@@ -1,6 +1,6 @@
-﻿using CodeBridgeGPT.AI.Interfaces;
+﻿using CodeBridgePlatform.AI.Core.Interfaces;
 
-namespace CodeBridgeGPT.AI.Validation
+namespace CodeBridgePlatform.AI.Core.Validation
 {
     public class ModelInspectorService : IModelInspectorService
     {

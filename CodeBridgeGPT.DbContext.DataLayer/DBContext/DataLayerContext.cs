@@ -1,7 +1,7 @@
-﻿using CodeBridgeGPT.DbContext.DataLayer.Models;
+﻿using CodeBridgePlatform.DbContext.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CodeBridgeGPT.DbContext.DataLayer.DBContext
+namespace CodeBridgePlatform.DbContext.DataLayer.DBContext
 {
     public class DataLayerContext(DbContextOptions<DataLayerContext> options) : Microsoft.EntityFrameworkCore.DbContext(options)
     {
