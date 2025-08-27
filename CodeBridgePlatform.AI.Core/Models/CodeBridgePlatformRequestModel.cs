@@ -2,7 +2,7 @@
 
 namespace CodeBridgePlatform.AI.Core.Models
 {
-    public class CodeBridgeGptRequestModel
+    public class CodeBridgePlatformRequestModel
     {
         [Required]
         [RegularExpression(@"^REQ-\d{6}$", ErrorMessage = "TaskId must be in the format 'REQ-' followed by 6 digits.")]
