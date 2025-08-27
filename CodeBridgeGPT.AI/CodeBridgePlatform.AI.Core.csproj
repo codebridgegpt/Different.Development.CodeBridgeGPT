@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CodeBridgeGPT.DbContext.DataLayer\CodeBridgeGPT.DbContext.DataLayer.csproj" />
+    <ProjectReference Include="..\CodeBridgeGPT.DbContext.DataLayer\CodeBridgePlatform.DbContext.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>
